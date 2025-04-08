@@ -8,6 +8,9 @@ import com.asp.ObifyConsulting.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class PropertyServiceImpl implements PropertyService {
     @Autowired
@@ -21,5 +24,16 @@ public class PropertyServiceImpl implements PropertyService {
         propertyEntity = propertyRepository.save(propertyEntity);
          propertyDTO = propertyConver.convertEntityTODTO(propertyEntity);
         return propertyDTO;
+    }
+
+    @Override
+    public List<PropertyDTO> getAllProperties() {
+        List<PropertyEntity> entities = propertyRepository.findAll();
+        List<PropertyDTO> plist = new ArrayList<PropertyDTO>();
+        for (PropertyEntity propertyEntity :entities) {
+            PropertyDTO propertyDTO = propertyConver.convertEntityTODTO(propertyEntity);
+               plist.add(propertyDTO);
+        }
+        return plist;
     }
 }
