@@ -34,20 +34,20 @@ public class Propertycontroller {
     public ResponseEntity<PropertyDTO> updateProperty(
             @RequestBody PropertyDTO propertyDTO,@PathVariable long propertyId){
         propertyDTO = propertyService.updateProperty(propertyDTO, propertyId);
-        return  new ResponseEntity(propertyDTO,HttpStatus.CREATED);
+        return  new ResponseEntity(propertyDTO,HttpStatus.OK);
     }
     @PatchExchange("/properties/updateDescription/{propertyId}")
     public ResponseEntity <PropertyDTO> updatePropertyDescription(@RequestBody PropertyDTO propertyDTO,
                                           @PathVariable Long propertyId)
     {
         propertyDTO = propertyService.updatePropertyDescription(propertyDTO, propertyId);
-        return  new ResponseEntity(propertyDTO,HttpStatus.CREATED);
+        return  new ResponseEntity(propertyDTO,HttpStatus.OK);
     }
     @PatchExchange("/properties/updatePropertyPrice/{propertyId}")
     public ResponseEntity <PropertyDTO> updatePropertyPrice(@RequestBody PropertyDTO propertyDTO,
                                           @PathVariable Long propertyId)
     {
          propertyDTO = propertyService.updatePropertyPrice(propertyDTO, propertyId);
-        return  new ResponseEntity(propertyDTO,HttpStatus.CREATED);
+        return  new ResponseEntity(propertyDTO,HttpStatus.OK);
     }
 }
