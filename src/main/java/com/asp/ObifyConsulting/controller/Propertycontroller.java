@@ -29,4 +29,10 @@ public class Propertycontroller {
         List<PropertyDTO> allProperties = propertyService.getAllProperties();
         return new ResponseEntity(allProperties,HttpStatus.OK);
     }
+    @PutMapping("/properties/{propertyId}")
+    public ResponseEntity<PropertyDTO> updateProperty(
+            @RequestBody PropertyDTO propertyDTO,@PathVariable long propertyId){
+        propertyDTO = propertyService.updateProperty(propertyDTO, propertyId);
+        return  new ResponseEntity(propertyDTO,HttpStatus.CREATED);
+    }
 }
