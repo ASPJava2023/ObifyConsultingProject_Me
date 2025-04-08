@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.service.annotation.PatchExchange;
 
 import java.util.List;
 
@@ -33,6 +34,20 @@ public class Propertycontroller {
     public ResponseEntity<PropertyDTO> updateProperty(
             @RequestBody PropertyDTO propertyDTO,@PathVariable long propertyId){
         propertyDTO = propertyService.updateProperty(propertyDTO, propertyId);
+        return  new ResponseEntity(propertyDTO,HttpStatus.CREATED);
+    }
+    @PatchExchange("/properties/updateDescription/{propertyId}")
+    public ResponseEntity <PropertyDTO> updatePropertyDescription(@RequestBody PropertyDTO propertyDTO,
+                                          @PathVariable Long propertyId)
+    {
+        propertyDTO = propertyService.updatePropertyDescription(propertyDTO, propertyId);
+        return  new ResponseEntity(propertyDTO,HttpStatus.CREATED);
+    }
+    @PatchExchange("/properties/updatePropertyPrice/{propertyId}")
+    public ResponseEntity <PropertyDTO> updatePropertyPrice(@RequestBody PropertyDTO propertyDTO,
+                                          @PathVariable Long propertyId)
+    {
+         propertyDTO = propertyService.updatePropertyPrice(propertyDTO, propertyId);
         return  new ResponseEntity(propertyDTO,HttpStatus.CREATED);
     }
 }

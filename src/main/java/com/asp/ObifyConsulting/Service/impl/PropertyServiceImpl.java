@@ -41,27 +41,59 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public PropertyDTO updateProperty(PropertyDTO propertyDTO, Long propertyID) {
         Optional<PropertyEntity> byId = propertyRepository.findById(propertyID);
-       // propertyDTO  = null;
-        System.out.println(byId.toString());
-        if(byId.isPresent()){
+        PropertyDTO dto  = null;
+        if (byId.isPresent()) {
 
-            PropertyEntity propertyEntity = new PropertyEntity();
-            propertyEntity.setId(byId.get().getId());
-           // System.out.println("Print id");
+            PropertyEntity propertyEntity = byId.get();
+             // System.out.println("Print id");
             propertyEntity.setTitle(propertyDTO.getTitle());
             propertyEntity.setDescription(propertyDTO.getDescription());
             propertyEntity.setOwnerName(propertyDTO.getOwnerName());
             propertyEntity.setOwnerEmail(propertyDTO.getOwnerEmail());
             propertyEntity.setPrice(propertyDTO.getPrice());
             propertyEntity.setAddress(propertyDTO.getAddress());
+
+            dto = propertyConver.convertEntityTODTO(propertyEntity);
             propertyRepository.save(propertyEntity);
             System.out.println("Updated Record Saved");
-            propertyDTO =propertyConver.convertEntityTODTO(propertyEntity);
-            return propertyDTO;
+            return dto;
+        } else {
+            System.out.println("No id found with Number:" + propertyID);
+            return new PropertyDTO();
         }
-        else {
-            System.out.println("No id found with Number:"+propertyID);
-        }
-        return null;
     }
+    @Override
+    public PropertyDTO updatePropertyDescription(PropertyDTO propertyDTO, Long propertyID) {
+        Optional<PropertyEntity> byId = propertyRepository.findById(propertyID);
+        if (byId.isPresent()) {
+            PropertyDTO dto =null;
+            PropertyEntity propertyEntity = byId.get();
+            propertyEntity.setDescription(propertyDTO.getDescription());
+            dto = propertyConver.convertEntityTODTO(propertyEntity);
+            propertyRepository.save(propertyEntity);
+            System.out.println("Updated Description in Record Saved");
+            return dto;
+        } else {
+            System.out.println("No id found with Number:" + propertyID);
+            return new PropertyDTO();
+        }
+    }
+
+    @Override
+    public PropertyDTO updatePropertyPrice(PropertyDTO propertyDTO, Long propertyID) {
+        Optional<PropertyEntity> byId = propertyRepository.findById(propertyID);
+        if (byId.isPresent()) {
+            PropertyDTO dto =null;
+            PropertyEntity propertyEntity = byId.get();
+            propertyEntity.setPrice(propertyDTO.getPrice());
+            dto = propertyConver.convertEntityTODTO(propertyEntity);
+            propertyRepository.save(propertyEntity);
+            System.out.println("Updated Description in Record Saved");
+            return dto;
+           } else {
+            System.out.println("No id found with Number:" + propertyID);
+            return new PropertyDTO();
+        }
+    }
+
 }
