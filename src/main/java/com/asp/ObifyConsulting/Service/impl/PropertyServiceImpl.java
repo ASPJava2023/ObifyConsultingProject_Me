@@ -96,4 +96,10 @@ public class PropertyServiceImpl implements PropertyService {
         }
     }
 
+    @Override
+    public void deleteProperty(Long propertyID) {
+        propertyRepository.deleteById(propertyID);
+        System.out.println("It Given property deletated");
+    }
+
 }

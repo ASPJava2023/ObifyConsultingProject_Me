@@ -50,4 +50,9 @@ public class Propertycontroller {
          propertyDTO = propertyService.updatePropertyPrice(propertyDTO, propertyId);
         return  new ResponseEntity(propertyDTO,HttpStatus.OK);
     }
+    @DeleteMapping("/properties/{propertyId}")
+    public ResponseEntity<PropertyDTO> deleteProperty(@PathVariable Long propertyId){
+            propertyService.deleteProperty(propertyId);
+        return  new ResponseEntity("Property deleted",HttpStatus.OK);
+    }
 }
