@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1")
 public class Mycontroller {
+    @GetMapping("/")
+    public String welcomeinit(){
+        return "Welcome to Ankit API";
+    }
 
     @GetMapping("/welcome")
     public String welcome(){
-        return "Welcome to world";
+        return "This is welcome message from ASP";
     }
     @GetMapping("/add")
     public Double add(@RequestParam("n1") Double n1,@RequestParam("n2") Double n2){
