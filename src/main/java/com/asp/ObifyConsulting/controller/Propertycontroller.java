@@ -13,6 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/Property/v1")
 public class Propertycontroller {
+
+    //Swagger end point -http://localhost:9094/swagger-ui/index.html
    @Autowired
     private PropertyService propertyService;
     @PostMapping("/save")
