@@ -1,4 +1,4 @@
-package com.asp.ObifyConsulting.Exception;
+package com.asp.ObifyConsulting.exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 

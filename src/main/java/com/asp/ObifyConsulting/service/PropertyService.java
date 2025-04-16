@@ -1,4 +1,4 @@
-package com.asp.ObifyConsulting.Service;
+package com.asp.ObifyConsulting.service;
 
 import com.asp.ObifyConsulting.DTO.PropertyDTO;
 
