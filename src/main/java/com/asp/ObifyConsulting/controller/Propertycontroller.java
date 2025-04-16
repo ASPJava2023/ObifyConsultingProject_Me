@@ -1,7 +1,7 @@
 package com.asp.ObifyConsulting.controller;
 
 import com.asp.ObifyConsulting.DTO.PropertyDTO;
-import com.asp.ObifyConsulting.Service.PropertyService;
+import com.asp.ObifyConsulting.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/Property/v1")
 public class Propertycontroller {
+
+    //Swagger end point -http://localhost:9094/swagger-ui/index.html
    @Autowired
     private PropertyService propertyService;
     @PostMapping("/save")
@@ -49,5 +51,10 @@ public class Propertycontroller {
     {
          propertyDTO = propertyService.updatePropertyPrice(propertyDTO, propertyId);
         return  new ResponseEntity(propertyDTO,HttpStatus.OK);
+    }
+    @DeleteMapping("/properties/{propertyId}")
+    public ResponseEntity<PropertyDTO> deleteProperty(@PathVariable Long propertyId){
+            propertyService.deleteProperty(propertyId);
+        return  new ResponseEntity("Property deleted",HttpStatus.OK);
     }
 }

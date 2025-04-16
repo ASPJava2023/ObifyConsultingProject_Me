@@ -1,7 +1,7 @@
-package com.asp.ObifyConsulting.Service.impl;
+package com.asp.ObifyConsulting.service.impl;
 
 import com.asp.ObifyConsulting.DTO.PropertyDTO;
-import com.asp.ObifyConsulting.Service.PropertyService;
+import com.asp.ObifyConsulting.service.PropertyService;
 import com.asp.ObifyConsulting.converter.PropertyConver;
 import com.asp.ObifyConsulting.entity.PropertyEntity;
 import com.asp.ObifyConsulting.repository.PropertyRepository;
@@ -94,6 +94,12 @@ public class PropertyServiceImpl implements PropertyService {
             System.out.println("No id found with Number:" + propertyID);
             return new PropertyDTO();
         }
+    }
+
+    @Override
+    public void deleteProperty(Long propertyID) {
+        propertyRepository.deleteById(propertyID);
+        System.out.println("It Given property deletated");
     }
 
 }
