@@ -5,6 +5,8 @@ import com.asp.ObifyConsulting.service.PropertyService;
 import com.asp.ObifyConsulting.converter.PropertyConver;
 import com.asp.ObifyConsulting.entity.PropertyEntity;
 import com.asp.ObifyConsulting.repository.PropertyRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class PropertyServiceImpl implements PropertyService {
     @Autowired
     private PropertyRepository propertyRepository;
@@ -24,7 +28,8 @@ public class PropertyServiceImpl implements PropertyService {
         PropertyEntity propertyEntity = propertyConver.convertDTOEntity(propertyDTO);
         propertyEntity = propertyRepository.save(propertyEntity);
          propertyDTO = propertyConver.convertEntityTODTO(propertyEntity);
-        return propertyDTO;
+        log.info("Data saved in DB");
+         return propertyDTO;
     }
 
     @Override
