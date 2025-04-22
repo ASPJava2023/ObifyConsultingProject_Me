@@ -2,6 +2,7 @@ package com.asp.ObifyConsulting.controller;
 
 import com.asp.ObifyConsulting.DTO.PropertyDTO;
 import com.asp.ObifyConsulting.service.PropertyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class Propertycontroller {
    @Autowired
     private PropertyService propertyService;
     @PostMapping("/save")
-    public ResponseEntity saveProperty(@RequestBody PropertyDTO propertyDTO){
+    public ResponseEntity saveProperty(@RequestBody @Valid PropertyDTO propertyDTO){
         System.out.println(propertyDTO);
         propertyDTO = propertyService.saveProperty(propertyDTO);
         ResponseEntity<PropertyDTO> responseEntity =
@@ -35,7 +36,7 @@ public class Propertycontroller {
     @PutMapping("/properties/{propertyId}")
     public ResponseEntity<PropertyDTO> updateProperty(
             @RequestBody PropertyDTO propertyDTO,@PathVariable long propertyId){
-        propertyDTO = propertyService.updateProperty(propertyDTO, propertyId);
+       propertyService.updateProperty(propertyDTO, propertyId);
         return  new ResponseEntity(propertyDTO,HttpStatus.OK);
     }
     @PatchExchange("/properties/updateDescription/{propertyId}")

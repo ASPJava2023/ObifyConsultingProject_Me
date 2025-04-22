@@ -1,6 +1,7 @@
 package com.asp.ObifyConsulting.service.impl;
 
 import com.asp.ObifyConsulting.DTO.PropertyDTO;
+import com.asp.ObifyConsulting.exception.PropertyNotFoundExceptionCustom;
 import com.asp.ObifyConsulting.service.PropertyService;
 import com.asp.ObifyConsulting.converter.PropertyConver;
 import com.asp.ObifyConsulting.entity.PropertyEntity;
@@ -69,8 +70,9 @@ public class PropertyServiceImpl implements PropertyService {
     }
     @Override
     public PropertyDTO updatePropertyDescription(PropertyDTO propertyDTO, Long propertyID) {
-        Optional<PropertyEntity> byId = propertyRepository.findById(propertyID);
-        if (byId.isPresent()) {
+        Optional <PropertyEntity> byId = Optional.ofNullable(propertyRepository.findById(propertyID)
+                .orElseThrow(() -> new PropertyNotFoundExceptionCustom("Property not found " + propertyID)));
+        //if (byId.isPresent()) {
             PropertyDTO dto =null;
             PropertyEntity propertyEntity = byId.get();
             propertyEntity.setDescription(propertyDTO.getDescription());
@@ -78,11 +80,9 @@ public class PropertyServiceImpl implements PropertyService {
             propertyRepository.save(propertyEntity);
             System.out.println("Updated Description in Record Saved");
             return dto;
-        } else {
-            System.out.println("No id found with Number:" + propertyID);
-            return new PropertyDTO();
+
         }
-    }
+
 
     @Override
     public PropertyDTO updatePropertyPrice(PropertyDTO propertyDTO, Long propertyID) {
