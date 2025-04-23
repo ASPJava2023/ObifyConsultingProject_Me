@@ -18,7 +18,11 @@ public class Propertycontroller {
     //Swagger end point -http://localhost:9094/swagger-ui/index.html
    @Autowired
     private PropertyService propertyService;
-    @PostMapping("/save")
+   @GetMapping("/hello")
+   public static String sayHello(){
+       return "Hello from ankit";
+   }
+    @PostMapping("/properties")
     public ResponseEntity saveProperty(@RequestBody @Valid PropertyDTO propertyDTO){
         System.out.println(propertyDTO);
         propertyDTO = propertyService.saveProperty(propertyDTO);

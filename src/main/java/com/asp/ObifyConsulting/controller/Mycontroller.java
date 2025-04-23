@@ -26,12 +26,15 @@ public class Mycontroller {
     @GetMapping("/multiplay/{n1}/{n2}")
         public Double multiplay(@PathVariable("n1") Double n1,@PathVariable("n2") Double n2){
         Double result =null;
-        if(n1>n2){
+        if((n1>n2)){
+            //&&(n1!=0)&&(n2!=0)
             result= n1*n2;
             return result;
         }
         else{
-            result= n1*n2;
+           // n1++;
+            //n2++;
+            result= n2*n1;
             return result;
         }
 
