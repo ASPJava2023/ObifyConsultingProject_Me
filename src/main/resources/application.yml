@@ -1,26 +1,31 @@
 logging:
-  level:
-    com:
-      example:
-        transactiondemo: DEBUG
-    org:
-      springframework:
-        transaction: DEBUG
+    level:
+        com:
+            example:
+                transactiondemo: DEBUG
+        org:
+            springframework:
+                transaction: DEBUG
 server:
-  port: 9094
+    port: 9094
 spring:
-  application:
-    name: ObifyConsulting
-  datasource:
-    driverClassName: org.h2.Driver
-    password: ''
-    url: jdbc:h2:mem:testdb
-    username: sa
-  h2:
-    console:
-      enabled: true
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+    application:
+        name: ObifyConsulting
+    datasource:
+        driverClassName: org.h2.Driver
+        password: ''
+        url: jdbc:h2:mem:testdb
+        username: sa
+    h2:
+        console:
+            enabled: true
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
