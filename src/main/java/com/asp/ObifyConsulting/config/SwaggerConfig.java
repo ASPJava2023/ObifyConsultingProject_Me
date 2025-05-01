@@ -18,10 +18,20 @@ public class SwaggerConfig {
     // This creates a group that only includes endpoints under /api/**
 }
     @Bean
-    public GroupedOpenApi apiGroup() {
+    public GroupedOpenApi PropertyapiGroup() {
             return GroupedOpenApi.builder()
-                    .group("API") // Group name shown in Swagger UI
-                    .pathsToMatch("/api/**") // Only show docs for endpoints matching this
+                    .group("Property") // Group name shown in Swagger UI
+                    //.pathsToMatch("/api/**")
+                    .pathsToMatch("/Property/**")// Only show docs for endpoints matching this
                     .build();
+    }
+
+    @Bean
+    public GroupedOpenApi GenralapiGroup() {
+        return GroupedOpenApi.builder()
+                .group("Genralapi") // Group name shown in Swagger UI
+                          .pathsToMatch("/api/**")
+                //.pathsToMatch("/Property/**")// Only show docs for endpoints matching this
+                .build();
     }
 }
